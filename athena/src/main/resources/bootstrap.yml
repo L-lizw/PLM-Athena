@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: athena
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.1.3:8848 #配置中心地址+
+        file-extension: yml
+        namespace: dev
+        group: PLM-Athena
+        extension-configs:
+          - dataId: crossconf.yml
+            group: PLM-Athena
+            refresh: true
+          - dataId: client.yml
+            group: PLM-Athena
+            refresh: true
+#          namespace: dev
+#          group: PLM-Athena
+#          data-id: crossconf
+#          refresh: true

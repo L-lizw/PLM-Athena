@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="PLM-Cloud:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>PLM-Cloud</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="PLM-Cloud-1.0.43.1.war">
+      <element id="artifact" artifact-name="PLM-Cloud:war exploded" />
+    </root>
+  </artifact>
+</component>

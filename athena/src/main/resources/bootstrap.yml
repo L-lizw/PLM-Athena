@@ -4,7 +4,7 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: 192.168.1.3:8848 #配置中心地址+
+        server-addr: plm.athena.confserver.com:8848 #配置中心地址+
         file-extension: yml
         namespace: dev
         group: PLM-Athena
@@ -15,7 +15,4 @@ spring:
           - dataId: client.yml
             group: PLM-Athena
             refresh: true
-#          namespace: dev
-#          group: PLM-Athena
-#          data-id: crossconf
-#          refresh: true
+

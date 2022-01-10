@@ -6,9 +6,12 @@ import com.digiwin.plm.athena.bean.enums.PlatformEnum;
 import com.digiwin.plm.athena.bean.exception.WebException;
 import com.digiwin.plm.athena.bean.general.info.eai.EAIServiceInfo;
 import com.digiwin.plm.athena.bean.general.info.eai.HostInfo;
+import com.digiwin.plm.athena.bean.general.info.eai.HostProductInfo;
+import com.digiwin.plm.athena.bean.general.vo.eai.ProductRegisterVo;
 import com.digiwin.plm.athena.bean.general.vo.eai.SrvRegVo;
 import com.digiwin.plm.athena.conf.properties.CrossHostProperties;
 import com.digiwin.plm.athena.net.PLMServiceProvider;
+import dyna.common.bean.data.system.CrossServiceConfig;
 import dyna.common.exception.ServiceRequestException;
 import dyna.common.util.JsonUtils;
 import dyna.common.util.StringUtils;
@@ -25,6 +28,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.condition.PatternsRequestCondition;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -91,8 +95,9 @@ public class BaseController
 		return "forward:/"+serviceName;
 	}
 
+	@ApiIgnore
 	@ApiOperation(value = "首页")
-	@GetMapping("/default")
+	@RequestMapping("/default")
 	public String defaultRequest()
 	{
 		return "index";
@@ -106,7 +111,7 @@ public class BaseController
 	 * @throws WebException
 	 * @throws ServiceRequestException
 	 */
-	@GetMapping("/syncProd")
+	@PostMapping ("/syncProd")
 	public String syncProd(HttpServletRequest request) throws ServiceRequestException
 	{
 		Map<String, String> service = this.getService(request);
@@ -155,14 +160,31 @@ public class BaseController
 	 */
 	@ResponseBody
 	@ApiOperation(value = "获取PLM注册的所有产品")
-	@GetMapping("/getProdRegInfo")
-	public Map<String, Object> getProdRegInfo(HttpServletRequest request, HttpServletResponse response) throws WebException, ServiceRequestException
+	@PostMapping("/getProdRegInfo")
+	public ProductRegisterVo getProdRegInfo(HttpServletRequest request, HttpServletResponse response) throws WebException, ServiceRequestException
 	{
 		response.setHeader("digi-action", "reg");
 		Map<String, String> service = this.getService(request);
 		String ip = service.get("ip");
 		ERPI erpi = psp.getServiceInstance(ERPI.class);
-		return erpi.getProdRegInfo4Restful(ip, crossHostProperties.getUid());
+
+		Calendar cal = Calendar.getInstance();
+		TimeZone timeZone = cal.getTimeZone();
+		int zone = timeZone.getRawOffset() / 3600000;
+
+		HostProductInfo hostProductInfo = new HostProductInfo();
+		hostProductInfo.setProd(crossHostProperties.getName());
+		hostProductInfo.setVer(crossHostProperties.getVer());
+		hostProductInfo.setIp(ip);
+		hostProductInfo.setId(crossHostProperties.getUid());
+		hostProductInfo.setUid(crossHostProperties.getUid());
+		hostProductInfo.setTimezone(String.valueOf(zone));
+		hostProductInfo.setResturl(crossHostProperties.getResturl());
+		hostProductInfo.setRetrytimes(crossHostProperties.getRetrytimes());
+		hostProductInfo.setRetryinterval(crossHostProperties.getRetryinterval());
+		hostProductInfo.setConcurrence(crossHostProperties.getConcurrence());
+
+		return new ProductRegisterVo(hostProductInfo);
 	}
 
 	/**
@@ -176,7 +198,7 @@ public class BaseController
 	 */
 	@ResponseBody
 	@ApiOperation(value = "获取PLM所有注册的接口")
-	@GetMapping("/getSrvRegInfo")
+	@PostMapping("/getSrvRegInfo")
 	public SrvRegVo getSrvRegInfo(HttpServletRequest request, HttpServletResponse response) throws WebException, ServiceRequestException
 	{
 		response.setHeader("digi-action", "reg");
@@ -190,9 +212,9 @@ public class BaseController
 		SrvRegVo srvRegVo = new SrvRegVo();
 
 		HostInfo hostInfo = new HostInfo();
-		hostInfo.setProd(crossHostProperties.getId());
+		hostInfo.setProd(crossHostProperties.getName());
 		hostInfo.setVer(crossHostProperties.getVer());
-		hostInfo.setIp(crossHostProperties.getIp());
+		hostInfo.setIp(ip);
 		hostInfo.setUid(crossHostProperties.getUid());
 		hostInfo.setId(crossHostProperties.getUid());
 
@@ -212,7 +234,7 @@ public class BaseController
 	 * @throws ServiceRequestException
 	 */
 	@ApiOperation(value = "接收中台信息，整合设定同步PLM资讯")
-	@GetMapping("/doSyncProcess")
+	@PostMapping("/doSyncProcess")
 	public void doSyncProcess(@RequestBody String requestData, HttpServletResponse response) throws WebException, ServiceRequestException
 	{
 		ERPI erpi = psp.getServiceInstance(ERPI.class);

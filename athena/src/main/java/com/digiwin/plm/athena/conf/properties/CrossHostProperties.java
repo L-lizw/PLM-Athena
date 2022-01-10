@@ -19,7 +19,7 @@ public class CrossHostProperties
 {
 	private String ip;
 
-	private String id;
+	private String name;
 
 	private String ver;
 
@@ -28,6 +28,12 @@ public class CrossHostProperties
 	private String acct;
 
 	private String uid;
+
+	private String retrytimes;
+
+	private String retryinterval;
+
+	private String concurrence;
 
 	private String resturl;
 

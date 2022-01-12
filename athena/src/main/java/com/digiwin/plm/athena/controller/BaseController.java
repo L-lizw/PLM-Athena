@@ -18,8 +18,8 @@ import dyna.common.util.StringUtils;
 import dyna.net.service.brs.ERPI;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -42,7 +42,7 @@ import java.util.*;
 @Controller
 public class BaseController
 {
-	private static final Log				log	= LogFactory.getLog(BaseController.class);
+	private static final Logger log = LoggerFactory.getLogger(BaseController.class);
 
 	@Autowired
 	private RequestMappingHandlerMapping	requestMappingHandlerMapping;

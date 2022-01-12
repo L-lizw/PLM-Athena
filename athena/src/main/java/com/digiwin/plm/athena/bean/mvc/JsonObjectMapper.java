@@ -8,6 +8,9 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
+/**
+ * boot返回前端，String类型为空转“”
+ */
 public class JsonObjectMapper extends ObjectMapper{
 
     /**

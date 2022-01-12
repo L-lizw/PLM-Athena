@@ -41,7 +41,7 @@ public class SessionInterceptor implements HandlerInterceptor
 				paramUser = "admin";
 			}
 
-			log.info("发起�?:" + paramUser + "  " + "url:" + url);
+			log.info("发起人:" + paramUser + "  " + "url:" + url);
 
 			String plmUser = psp.lookPLMUserByMobile(paramUser);
 			if (StringUtils.isNullString(plmUser)) {

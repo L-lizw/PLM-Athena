@@ -14,6 +14,7 @@
     <name>athena</name>
     <description>PLM to Athena by Spring Boot</description>
     <properties>
+        <start-class>com.digiwin.plm.athena.AthenaApplication</start-class>
         <java.version>1.8</java.version>
         <commons.beautifuls.version>1.9.4</commons.beautifuls.version>
     </properties>
@@ -39,6 +40,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+            <scope>compile</scope>
+        </dependency>
 
         <!-- Thyemleaf-->
         <dependency>
@@ -62,12 +68,10 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-            <version>2021.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
-            <version>3.1.0</version>
         </dependency>
 
         <dependency>
@@ -160,7 +164,17 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
+                    <mainClass>${start-class}</mainClass>
+                    <includeSystemScope>true</includeSystemScope>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>

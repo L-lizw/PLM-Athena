@@ -97,7 +97,7 @@ public class ECNWoDetail implements Serializable
 	@ApiModelProperty("备注")
 	String remarks;
 	
-	@ApiModelProperty
+	@ApiModelProperty("变更工单号")
 	@Alias("BGGDH")
 	String wo_no;
 	

@@ -37,16 +37,24 @@ public class WebConfig implements WebMvcConfigurer
 		return new SessionInterceptor();
 	}
 
+	@Bean
+	public JsonObjectMapper getJsonObjectMapper()
+	{
+		return new  JsonObjectMapper();
+	}
+
 	
-	public void addInterceptors(InterceptorRegistry registry) {
+	public void addInterceptors(InterceptorRegistry registry)
+	{
 		InterceptorRegistration registration = registry.addInterceptor(ssInterceptor());
 		registration.addPathPatterns("/**"); // "/**" //所有路径都被拦截
 		
 	}
 
 	@Override
-	public void configureMessageConverters(List<HttpMessageConverter<?>> messageConverters) {
-		messageConverters.add(new MappingJackson2HttpMessageConverter( new JsonObjectMapper()));
+	public void configureMessageConverters(List<HttpMessageConverter<?>> messageConverters)
+	{
+		messageConverters.add(new MappingJackson2HttpMessageConverter(getJsonObjectMapper()));
 	}
 
 }

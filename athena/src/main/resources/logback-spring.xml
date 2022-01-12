@@ -43,7 +43,7 @@
       <!--指定日志格式-->
       <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>
       <!--设置字符集-->
-      <charset>GBK</charset>
+      <charset>UTF-8</charset>
     </encoder>
   </appender>
 

@@ -39,16 +39,30 @@ public class PLMServiceProviderImpl implements PLMServiceProvider
 	{
 		try
 		{
+			ConfigurableClientImpl configurableClient = new ConfigurableClientImpl();
+			configurableClient.setClientMode(ConnectionMode.getClientMode(clientConfig.getModename()));
+			configurableClient.setDefaultLookupServicePort(Integer.valueOf(clientConfig.getServiceLookup().getPort()));
+			configurableClient.setLookupServiceHost(clientConfig.getDefaultHost());
+			configurableClient.configured();
+
 			if (client == null)
 			{
-				ConfigurableClientImpl configurableClient = new ConfigurableClientImpl();
-				configurableClient.setClientMode(ConnectionMode.getClientMode(clientConfig.getModename()));
-				configurableClient.setDefaultLookupServicePort(Integer.valueOf(clientConfig.getServiceLookup().getPort()));
-				configurableClient.setLookupServiceHost(clientConfig.getDefaultHost());
-				configurableClient.configured();
 				client = new StatelessRMIClient(configurableClient);
 				client.open();
 				sp = ServiceProviderFactory.getServiceProvider(client);
+			}
+			else
+			{
+				try
+				{
+					client.testConnection();
+				}
+				catch(Exception e)
+				{
+					client = new StatelessRMIClient(configurableClient);
+					client.open();
+					sp = ServiceProviderFactory.getServiceProvider(client);
+				}
 			}
 		}
 		catch (Exception e)

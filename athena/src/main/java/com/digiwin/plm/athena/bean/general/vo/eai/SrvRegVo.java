@@ -14,7 +14,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class SrvRegVo
 {
-	@ApiModelProperty("主机信息") HostInfo host;
+	@ApiModelProperty("主机信息")
+	private HostInfo host;
 
-	@ApiModelProperty("接口信息") EAIServiceInfo service;
+	@ApiModelProperty("接口信息")
+	private EAIServiceInfo service;
 }

@@ -16,16 +16,16 @@ public class AfterSaleInfo
 {
 	@ApiModelProperty("ECN单号")
 	@Alias("ID$")
-	public String ecn_no;
+	private String ecn_no;
 
 	@ApiModelProperty("ECN项次")
 	@Alias("")
-	public String ecn_seq;
+	private String ecn_seq;
 
 	@ApiModelProperty("ECN主件项次")
 	@Alias("")
-	public String ecn_master_seq;
+	private String ecn_master_seq;
 
 	@ApiModelProperty("售后订单列表")
-	public List<ECNSaleDetail> ecn_so_detail;
+	private List<ECNSaleDetail> ecn_so_detail;
 }

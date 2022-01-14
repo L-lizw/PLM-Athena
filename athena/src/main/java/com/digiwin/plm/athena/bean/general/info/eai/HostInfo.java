@@ -7,18 +7,18 @@ import lombok.Data;
 public class HostInfo
 {
 	@ApiModelProperty("产品名")
-	String prod;
+	private String prod;
 
 	@ApiModelProperty("版本号")
-	String ver;
+	private String ver;
 
 	@ApiModelProperty("本地主机IP")
-	String ip;
+	private String ip;
 
 	@ApiModelProperty("产品唯一识别码")
-	String id;
+	private String id;
 
 	@ApiModelProperty("产品唯一识别码")
-	String uid;
+	private String uid;
 
 }

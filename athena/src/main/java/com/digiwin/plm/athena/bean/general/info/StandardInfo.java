@@ -14,8 +14,8 @@ import lombok.Setter;
 @ApiModel(value = "Athena平台标准返回内嵌信息")
 public class StandardInfo
 {
-	Execution execution;
+	private Execution execution;
 
 	@ApiModelProperty(value = "接口返回对象统一放parameter中")
-	Object	parameter;
+	private Object	parameter;
 }

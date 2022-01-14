@@ -13,5 +13,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class AthenaDataChangeGetVo
 {
-	List<ResponseObject> response_objects;
+	private List<ResponseObject> response_objects;
 }

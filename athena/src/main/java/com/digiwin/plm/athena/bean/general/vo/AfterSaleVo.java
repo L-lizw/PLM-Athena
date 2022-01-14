@@ -14,6 +14,6 @@ import lombok.Setter;
 @Api(tags = "售后订单返回对象")
 public class AfterSaleVo
 {	
-	public List<AfterSaleInfo> ecn_so_data;
+	private List<AfterSaleInfo> ecn_so_data;
 
 }

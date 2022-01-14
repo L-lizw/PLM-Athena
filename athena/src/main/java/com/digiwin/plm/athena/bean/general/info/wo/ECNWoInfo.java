@@ -20,5 +20,5 @@ public class ECNWoInfo implements Serializable
 	 */
 	private static final long serialVersionUID = -2107801391874452129L;
 
-	List<com.digiwin.plm.bean.general.info.wo.ECNWoDetail> ecn_wo_data;
+	private List<com.digiwin.plm.bean.general.info.wo.ECNWoDetail> ecn_wo_data;
 }

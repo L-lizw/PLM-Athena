@@ -14,8 +14,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ResponseObject
 {
-	String rule_id;
-	
-	List<Map<String,Object>> change_objects;
+	private String rule_id;
+
+	private List<Map<String,Object>> change_objects;
 	
 }

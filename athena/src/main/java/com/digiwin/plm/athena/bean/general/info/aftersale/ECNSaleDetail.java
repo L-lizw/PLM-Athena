@@ -16,31 +16,35 @@ public class ECNSaleDetail
 {
 	@ApiModelProperty("客户编号")
 	@Alias("KHBH")
-	String customer_no;
+	private String customer_no;
 	
 	@ApiModelProperty("料件编号")
 	@Alias("LJBH$ALTERID$")
-	String item_no;
+	private String item_no;
 	
 	@ApiModelProperty("销售数量")
 	@Alias("XSSL")
-	String so_qty;
+	private String so_qty;
 	
 	@ApiModelProperty("约定交货日")
 	@Alias("YDJHR")
-	String delivery_date;
+	private String delivery_date;
 
 	@ApiModelProperty("价格")
-	String price = "0";
+	private String price = "0";
 	
 	@ApiModelProperty("据点")
 	@Alias("FACTORY")
-	String om_company_id;
+	private String om_company_id;
 
 	@ApiModelProperty("营运据点编号")
-	String om_site_id;
+	private String om_site_id;
 
 	@ApiModelProperty("营运域编号")
-	String om_region_id;
+	private String om_region_id;
+
+	@ApiModelProperty("集团代号")
+	@Alias("GROUPNUM")
+	private String group_no;
 	
 }

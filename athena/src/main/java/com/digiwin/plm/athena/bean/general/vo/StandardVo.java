@@ -15,5 +15,5 @@ import lombok.Setter;
 @ApiModel(value = "Athena平台标准返回", description= "Athena平台接收对象")
 public class StandardVo
 {
-	StandardInfo std_data;
+	private StandardInfo std_data;
 }

@@ -13,14 +13,14 @@ import lombok.Setter;
 public class Execution
 {
 	@ApiModelProperty(value = "执行返回代码")
-	String code;
+	private String code;
 
 	@ApiModelProperty(value = "执行sql返回错误码")
-	String sql_code;
+	private String sql_code;
 
 	@ApiModelProperty(value = "返回描述信息")
-	String description;
+	private String description;
 
 	@ApiModelProperty(value = "请求token原路返回")
-	String token_id;
+	private String token_id;
 }

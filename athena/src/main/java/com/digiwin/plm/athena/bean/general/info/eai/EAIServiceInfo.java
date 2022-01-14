@@ -13,6 +13,6 @@ import java.util.List;
 public class EAIServiceInfo
 {
 	@ApiModelProperty("注册接口集合")
-	List<String> srvname;
+	private List<String> srvname;
 
 }

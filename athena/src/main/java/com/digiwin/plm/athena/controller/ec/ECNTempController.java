@@ -208,7 +208,15 @@ public class ECNTempController
 								{
 									str.put("GCSYQJQ", DateFormat.formatYMD(date));
 								}
+
+								String bgfs = (String)str.get("");
+
 								com.digiwin.plm.bean.general.info.wo.ECNWoDetail detail = JsonConvertUtil.convertMapToObject((StructureObjectImpl) str, com.digiwin.plm.bean.general.info.wo.ECNWoDetail.class);
+								if(detail.getChange_mode() != null && detail.getChange_mode().equalsIgnoreCase("1"))
+								{
+									detail.setWo_seq(" ");
+									detail.setWo_term_seq(" ");
+								}
 								detailList.add(detail);
 							}
 						}
